@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -32,8 +33,6 @@ INSTALLED_APPS += [
     'allauth.socialaccount.providers.google',
 ]
 
-SITE_ID = 1
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -50,11 +49,16 @@ ROOT_URLCONF = 'simple_signup.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
-        ,
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates'),  # Добавляем путь к глобальным шаблонам
+            os.path.join(BASE_DIR, 'templates', 'allauth'),  # Для кастомных шаблонов allauth
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.request',
             ],
         },
@@ -65,7 +69,6 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
-
 
 WSGI_APPLICATION = 'simple_signup.wsgi.application'
 
@@ -108,11 +111,12 @@ STATIC_URL = 'static/'
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+SITE_ID = 1
 
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/'
-
-
+LOGOUT_REDIRECT_URL = '/'
+ACCOUNT_LOGOUT_ON_GET = True
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USERNAME_REQUIRED = False

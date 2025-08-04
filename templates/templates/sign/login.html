@@ -1,0 +1,71 @@
+{% extends "main.html" %}
+
+{% block content %}
+    <h2> Войти в систему </h2>
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>{{ form.username.label_tag }}</td>
+                <td>{{ form.username }}</td>
+            </tr>
+            <tr>
+                <td>{{ form.password.label_tag }}</td>
+                <td>{{ form.password }}</td>
+            </tr>
+        </table>
+
+        <input type="submit" value="Войти">
+    </form>
+    <button><a href="/sign/signup"> Регистрация </a></button>
+{% endblock %}
+
+
+{#{% extends "main.html" %}#}
+{##}
+{#{% block content %}#}
+{#<div class="auth-wrapper">#}
+{#    <h2 class="auth-title">Sign In</h2>#}
+{##}
+{#    <p class="auth-description">#}
+{#        Please sign in with one of your existing third party accounts. Or,#}
+{#        <a href="{% url 'signup' %}">sign up</a>#}
+{#        for a example.com account and sign in below:#}
+{#    </p>#}
+{##}
+{#    <div class="social-buttons">#}
+{#        <a href="{% provider_login_url 'google' %}" class="google-btn">#}
+{#            <i class="fab fa-google"></i> Sign in with Google#}
+{#        </a>#}
+{#    </div>#}
+{##}
+{#    <div class="divider">#}
+{#        <span class="divider-line"></span>#}
+{#        <span class="divider-text">or</span>#}
+{#        <span class="divider-line"></span>#}
+{#    </div>#}
+{##}
+{#    <form method="post" class="auth-form">#}
+{#        {% csrf_token %}#}
+{#        <div class="form-group">#}
+{#            <label for="id_login">E-mail:</label>#}
+{#            <input type="email" name="login" id="id_login" required>#}
+{#        </div>#}
+{##}
+{#        <div class="form-group">#}
+{#            <label for="id_password">Password:</label>#}
+{#            <input type="password" name="password" id="id_password" required>#}
+{#        </div>#}
+{##}
+{#        <div class="form-options">#}
+{#            <label class="remember-me">#}
+{#                <input type="checkbox" name="remember">#}
+{#                <span>Remember Me</span>#}
+{#            </label>#}
+{#            <a href="#" class="forgot-password">Forgot Password?</a>#}
+{#        </div>#}
+{##}
+{#        <button type="submit" class="submit-btn">Sign In</button>#}
+{#    </form>#}
+{#</div>#}
+{#{% endblock %}#}

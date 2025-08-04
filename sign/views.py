@@ -1,4 +1,6 @@
+from allauth.account.views import LogoutView
 from django.contrib.auth.models import User
+from django.views.generic import TemplateView
 from django.views.generic.edit import CreateView
 from .models import BaseRegisterForm
 

@@ -1,0 +1,2 @@
+id = 2971971798-bmtca3oo3s5duohtk1en5750khm46q3k.apps.googleusercontent.com
+sekretkey = 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
